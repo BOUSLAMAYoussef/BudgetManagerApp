@@ -11,15 +11,21 @@ import { useState } from "react"
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext"
 
 function App() {
+  //  pour gérer l'affichage de la fenêtre modale d'ajout de budget
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
+  //  pour gérer l'affichage de la fenêtre modale d'ajout de dépense
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
+  //  pour gérer l'affichage de la fenêtre modale de visualisation de dépenses en fonction de l'ID du budget sélectionné
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState()
+  //  pour gérer l'ID du budget sélectionné lors de l'ajout d'une dépense
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState()
+  // Utilisation du contexte des budgets pour accéder aux informations de budgets et de dépenses
   const { budgets, getBudgetExpenses } = useBudgets()
-
+  
+  // Fonction pour ouvrir la fenêtre modale d'ajout de dépense en prenant en compte l'ID du budget sélectionné
   function openAddExpenseModal(budgetId) {
-    setShowAddExpenseModal(true)
-    setAddExpenseModalBudgetId(budgetId)
+  setShowAddExpenseModal(true)
+  setAddExpenseModalBudgetId(budgetId)
   }
 
   return (

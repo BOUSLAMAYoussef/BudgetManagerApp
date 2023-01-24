@@ -4,18 +4,18 @@ import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetsContext"
 import { currencyFormatter } from "../utils"
 
 export default function ViewExpensesModal({ budgetId, handleClose }) {
-  const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
-    useBudgets()
-
+  const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } = useBudgets()
+  // Récupération des dépenses associées au budget donné
   const expenses = getBudgetExpenses(budgetId)
-  const budget =UNCATEGORIZED_BUDGET_ID === budgetId ? { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID }: budgets.find(b => b.id === budgetId)
+  // Récupération du budget correspondant
+  const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID } : budgets.find(b => b.id === budgetId)
 
   return (
     <Modal show={budgetId != null} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>
           <Stack direction="horizontal" gap="2">
-            
+            {/* Bouton pour supprimer le budget */}
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
               <Button
                 onClick={() => {
@@ -24,7 +24,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
                 }}
                 variant="outline-danger"
               >
-                Delete
+                Supprimer
               </Button>
             )}
           </Stack>
